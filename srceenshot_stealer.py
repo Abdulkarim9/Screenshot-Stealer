@@ -29,8 +29,8 @@ def send_email():
     email_password = " "
     email_receiver = " "
 
-    subject = "Testing 2"
-    body = "Let me know what you think about this photo"
+    subject = "Test"
+    body = "Screenshot"
 
     em = MIMEMultipart()
     em['From'] = email_sender
