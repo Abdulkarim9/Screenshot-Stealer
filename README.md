@@ -1,7 +1,7 @@
 # About
 This program grabs screenshots from victim coumputer and sends them to you by email.
 
-# This code DOES NOT promote or encourage any illegal activities! The content in this document is provided solely for educational purposes and to create awareness!
+# This code DOES NOT promote or encourage any illegal activities! The content in this document is provided for educational purposes and to create awareness!
 
 For this program to work: 
 
