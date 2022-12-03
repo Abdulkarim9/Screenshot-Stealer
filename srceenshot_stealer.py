@@ -12,7 +12,6 @@ def take_screenshot():
     global image_full_path
     # Find path to home directory
     home_dir = Path.home()
-    # Join home directory with folder name
     path = os.path.join(home_dir, "AppData/Local/Temp")
     
     # Take screenshot
