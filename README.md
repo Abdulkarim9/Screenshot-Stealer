@@ -7,7 +7,9 @@ For this program to work:
 
 1- you need to install pyautogui library with the following command.
 
-pip install PyAutoGUI
+```bash
+  pip install PyAutoGUI
+```
 
 2- open the script in a text editor and change these:
 
