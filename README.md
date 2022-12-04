@@ -1,8 +1,7 @@
 ## About
 This program grabs screenshots from victim coumputer and sends them to you by email.
-
-## This code DOES NOT promote or encourage any illegal activities! The content in this document is provided for educational purposes and to create awareness!
-
+## Disclaimer
+I wrote this script for educational not for destructive purposes and illegal actions, so I won't be responsible for that
 ## Installation
 
 ```bash
